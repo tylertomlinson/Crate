@@ -1,5 +1,6 @@
 // Imports
-import { compose, combineReducers } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { combineReducers } from 'redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
@@ -35,12 +36,13 @@ if (typeof window !== 'undefined') {
   delete window.__INITIAL_STATE__
 }
 
+const middlewareEnhancer = applyMiddleware(thunk)
+const enhancers = [middlewareEnhancer]
+const composedEnhancers = composeWithDevTools(...enhancers)
+
 // Store
 export const store = createStore(
   rootReducer,
-  initialState,
-
-  compose(
-    applyMiddleware(thunk),
-  )
+  initialState, 
+  composedEnhancers
 )
