@@ -12,7 +12,8 @@
     "build:client:prod": "webpack -p",
     "build:server:prod": "babel src -s -D -d build",
     "start:server:prod": " node build/index.js",
-    "storybook": "start-storybook -p 9000 -c storybook"
+    "storybook": "start-storybook -p 9000 -c storybook",
+    "publishheroku": "cd ../../ && git subtree push --prefix code/web heroku-web master || true"
   },
   "keywords": [],
   "author": "",
