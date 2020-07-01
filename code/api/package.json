@@ -12,7 +12,8 @@
     "start": "nodemon src/index.js --exec babel-node",
     "start:prod": "npm run build:prod && npm run start:server",
     "build:prod": "babel src -s -D -d build",
-    "start:server": "node build/index.js"
+    "start:server": "node build/index.js",
+    "publishheroku": "cd ../../ && git subtree push --prefix code/api heroku-be master || true"
   },
   "keywords": [],
   "author": "",
