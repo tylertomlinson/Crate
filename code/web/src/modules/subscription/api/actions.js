@@ -6,6 +6,7 @@ import { query, mutation } from 'gql-query-builder'
 import { routeApi } from '../../../setup/routes'
 
 // Actions Types
+// Action type 'strings' needed for Redux dispatchers:
 export const SUBSCRIPTIONS_GET_LIST_REQUEST = 'SUBSCRIPTIONS/GET_LIST_REQUEST'
 export const SUBSCRIPTIONS_GET_LIST_RESPONSE = 'SUBSCRIPTIONS/GET_LIST_RESPONSE'
 export const SUBSCRIPTIONS_GET_LIST_FAILURE = 'SUBSCRIPTIONS/GET_LIST_FAILURE'
@@ -19,6 +20,7 @@ export const SUBSCRIPTIONS_GET_FAILURE = 'SUBSCRIPTIONS/GET_FAILURE'
 // Actions
 
 // Get list of subscriptions
+//dispatches the type to the reducer in this folders state.js file:
 export function getList(isLoading = true) {
   return dispatch => {
     dispatch({
