@@ -28,3 +28,5 @@ export default {
     auth: true
   }
 }
+
+//will maybe need to add in here style preferences page /style-preferences
