@@ -29,4 +29,4 @@ export default {
   }
 }
 
-//will maybe need to add in here style preferences page /style-preferences
+//will maybe need to add in here style preferences page '/user/style-preferences'
