@@ -60,3 +60,6 @@ function profileState(state) {
 }
 
 export default connect(profileState, { logout })(Profile)
+
+
+//add to this file the results of the survey
