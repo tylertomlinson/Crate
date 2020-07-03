@@ -1,6 +1,8 @@
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
+// This file assigns fields to appropriate GraphQL types. This is standard convention
+// for setting up a GraphQL server
 // Product type
 const ProductType = new GraphQLObjectType({
   name: 'product',

@@ -3,11 +3,14 @@ import params from '../../config/params'
 import models from '../../setup/models'
 
 // Get all products
+// returns all products, all attributes are available to query
 export async function getAll() {
   return await models.Product.findAll({ order: [['id', 'DESC']] })
 }
 
 // Get product by slug
+//returns single product with matching slug, all product attributes are available --
+// this is the default search by for product
 export async function getBySlug(parentValue, { slug }) {
   const product = await models.Product.findOne({ where: { slug } })
 
@@ -20,6 +23,7 @@ export async function getBySlug(parentValue, { slug }) {
 }
 
 // Get product by ID
+//should return single product with matching id, called productById, all product attributes are available
 export async function getById(parentValue, { productId }) {
   const product = await models.Product.findOne({ where: { id: productId } })
 
@@ -32,6 +36,7 @@ export async function getById(parentValue, { productId }) {
 }
 
 // Get related products
+//should return random products when called with an argument of productId. Doesn't currently work and graphiql says function rand() doesn't exist
 export async function getRelated(parentValue, { productId }) {
   return await models.Product.findAll({
     where: {
@@ -43,6 +48,8 @@ export async function getRelated(parentValue, { productId }) {
 }
 
 // Create product
+// checks user authentication and if acceptable, creates new product in the db with name, slug, description
+// type, gender, and image fields based on supplied args
 export async function create(parentValue, { name, slug, description, type, gender, image }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
     return await models.Product.create({
@@ -59,6 +66,8 @@ export async function create(parentValue, { name, slug, description, type, gende
 }
 
 // Update product
+// checks user authentication and if acceptable, updates product in the db with name, slug, description
+// type, gender, and/or image fields based on supplied args. Locates object to update based on id arg
 export async function update(parentValue, { id, name, slug, description, type, gender, image }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
     return await models.Product.update(
@@ -78,6 +87,7 @@ export async function update(parentValue, { id, name, slug, description, type, g
 }
 
 // Delete product
+// checks user authentication and if acceptabe, deletes product with matching productId from the database
 export async function remove(parentValue, { id }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
     const product = await models.Product.findOne({where: {id}})
