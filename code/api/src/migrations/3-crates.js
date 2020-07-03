@@ -27,3 +27,5 @@ module.exports = {
     return queryInterface.dropTable('crates');
   }
 }
+
+//required fields are id, createdAt, and updatedAt -- all others are optional

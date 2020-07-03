@@ -39,3 +39,5 @@ module.exports = {
     return queryInterface.dropTable('products');
   }
 }
+
+//required fields are id, createdAt, and updatedAt -- all others are optional

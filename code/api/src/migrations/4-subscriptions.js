@@ -37,3 +37,6 @@ module.exports = {
     return queryInterface.dropTable('subscriptions');
   }
 }
+
+//subscriptions require id, userId, crateId, createdAt, and updatedAt.
+// Subscriptions belong to a user and to a crate
