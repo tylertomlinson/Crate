@@ -3,6 +3,7 @@ import axios from 'axios/index'
 import { routeApi } from '../../../setup/routes'
 
 //this is resonsible for showing and hiding the subscribe/unsubscribe messages
+//we made need to adjust the timing of this message or even when this is called
 
 export const MESSAGE_SHOW = 'COMMON_MESSAGE_SHOW'
 export const MESSAGE_HIDE = 'COMMON_MESSAGE_HIDE'

@@ -43,6 +43,8 @@ class Item extends PureComponent {
           this.props.messageShow('Subscribed successfully.')
 
           this.props.history.push(userRoutes.subscriptions.path)
+          //if the survey has already been completed, go to this path and proceed as usual
+          //if not, have this path go to the survey
         }
       })
       .catch(error => {
@@ -78,10 +80,12 @@ class Item extends PureComponent {
             <Button
               theme="primary"
               onClick={this.onClickSubscribe.bind(this, id)}
+              //would need to alter the button onClick function
               type="button"
               disabled={ isLoading }
             >
               <Icon size={1.2} style={{ color: white }}>add</Icon> Subscribe
+              {/* we'll need to update this icon to either read "Take Survey" if false and if true keep as is */}
             </Button>
           </p>
         </div>
@@ -106,6 +110,3 @@ function itemState(state) {
 }
 
 export default connect(itemState, { create, messageShow, messageHide })(withRouter(Item))
-
-
-//would need to alter the button onClick function

@@ -39,6 +39,8 @@ class Signup extends Component {
     }
   }
 
+  //add in gender to the signup
+
   onChange = (event) => {
     let user = this.state.user
     user[event.target.name] = event.target.value
@@ -159,6 +161,8 @@ class Signup extends Component {
                 onChange={this.onChange}
                 style={{ marginTop: '1em' }}
               />
+
+              {/* add input for dropdown menu for gender */}
             </div>
 
             <div style={{ marginTop: '2em' }}>

@@ -46,3 +46,5 @@ module.exports = {
     return queryInterface.bulkDelete('crates', null, {});
   }
 }
+
+//may need to update this file to just have 3 crates
