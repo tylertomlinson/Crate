@@ -37,7 +37,12 @@ export const userLogin = {
     role: {
       name: 'role',
       type: GraphQLString
-    }
+    }, 
+
+    // gender: {
+    //   name: 'gender',
+    //   type: GraphQLString
+    // }
   },
   resolve: login
 }
