@@ -17,6 +17,8 @@ const UserType = new GraphQLObjectType({
   })
 })
 
+//add gender in the fields above 
+
 // User Login type
 const UserLoginType = new GraphQLObjectType({
   name: 'userAuth',

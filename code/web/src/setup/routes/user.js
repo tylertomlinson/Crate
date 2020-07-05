@@ -30,3 +30,4 @@ export default {
 }
 
 //will maybe need to add in here style preferences page '/user/style-preferences'
+//then will need to render a survey component, so will need to create that under user

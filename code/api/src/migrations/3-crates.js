@@ -27,3 +27,5 @@ module.exports = {
     return queryInterface.dropTable('crates');
   }
 }
+
+//may need to add gender here - not sure

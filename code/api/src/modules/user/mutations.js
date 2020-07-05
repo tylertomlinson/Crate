@@ -27,6 +27,8 @@ export const userSignup = {
   resolve: create
 }
 
+//add a gender mutation 
+
 // Remove
 export const userRemove = {
   type: UserType,

@@ -50,3 +50,5 @@ Input.defaultProps = {
 }
 
 export default Input
+
+//styled component that we can use in the signup form for a dropdown menu for gender selection

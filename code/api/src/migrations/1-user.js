@@ -33,3 +33,5 @@ module.exports = {
     return queryInterface.dropTable('users');
   }
 }
+
+//may need to add in gender here - not sure

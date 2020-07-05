@@ -42,6 +42,8 @@ export const userLogin = {
   resolve: login
 }
 
+//add a gender query
+
 // Genders
 export const userGenders = {
   type: new GraphQLList(UserGenderType),

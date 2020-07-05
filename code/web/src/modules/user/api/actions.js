@@ -37,6 +37,7 @@ export function login(userCredentials, isLoading = true) {
       operation: 'userLogin',
       variables: userCredentials,
       fields: ['user {name, email, role}', 'token']
+      //add in gender
     }))
       .then(response => {
         let error = ''
@@ -83,6 +84,7 @@ export function register(userDetails) {
       operation: 'userSignup',
       variables: userDetails,
       fields: ['id', 'name', 'email']
+      //add in gender
     }))
   }
 }
