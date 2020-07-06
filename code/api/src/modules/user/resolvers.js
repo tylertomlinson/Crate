@@ -19,7 +19,8 @@ export async function create(parentValue, { name, email, password }) {
     return await models.User.create({
       name,
       email,
-      password: passwordHashed
+      password: passwordHashed,
+      gender
     })
   } else {
     // User exists
@@ -47,7 +48,8 @@ export async function login(parentValue, { email, password }) {
         id: userDetails.id,
         name: userDetails.name,
         email: userDetails.email,
-        role: userDetails.role
+        role: userDetails.role,
+        gender: userDetails.gender
       }
 
       return {
