@@ -12,6 +12,8 @@ const UserType = new GraphQLObjectType({
     email: { type: GraphQLString },
     password: { type: GraphQLString },
     role: { type: GraphQLString },
+    style: { type: GraphQLString },
+    gender: { type: GraphQLInt },
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString }
   })
