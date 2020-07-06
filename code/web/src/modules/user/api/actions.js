@@ -36,7 +36,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      fields: ['user {name, email, role, gender}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -82,10 +82,10 @@ export function register(userDetails) {
     return axios.post(routeApi, mutation({
       operation: 'userSignup',
       variables: userDetails,
-      fields: ['id', 'name', 'email']
+      fields: ['id', 'name', 'email', 'gender']
     }))
   }
-}
+} 
 
 // Log out user and remove token from localStorage
 export function logout() {

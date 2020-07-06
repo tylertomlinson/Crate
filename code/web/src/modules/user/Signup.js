@@ -10,6 +10,7 @@ import { Grid, GridCell } from '../../ui/grid'
 import Button from '../../ui/button'
 import ImageTile from '../../ui/image/Tile'
 import Input from '../../ui/input/Input'
+import Select from '../../ui/input/Select'
 import H3 from '../../ui/typography/H3'
 import Icon from '../../ui/icon'
 import { level1 } from '../../ui/common/shadows'
@@ -35,6 +36,7 @@ class Signup extends Component {
         name: '',
         email: '',
         password: '',
+        gender: ''
       }
     }
   }
@@ -67,7 +69,7 @@ class Signup extends Component {
           this.props.messageShow(response.data.errors[0].message)
         } else {
           this.props.messageShow('Signed up successfully.')
-
+          
           this.props.history.push(userRoutes.login.path)
         }
       })
@@ -159,6 +161,19 @@ class Signup extends Component {
                 onChange={this.onChange}
                 style={{ marginTop: '1em' }}
               />
+              {/* Gender */}
+              <Select
+                    fullWidth={true}
+                    required="required"
+                    name="gender"
+                    value={this.state.user.gender}
+                    onChange={this.onChange}
+                    style={{ marginTop: '1em' }}
+                  >
+                  <option value="">Click here to select your gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  </Select>
             </div>
 
             <div style={{ marginTop: '2em' }}>

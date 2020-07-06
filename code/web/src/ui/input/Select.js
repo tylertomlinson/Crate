@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { grey2, grey4, black } from '../common/colors'
 
 // Component
-const Input = (props) => {
+const Select = (props) => {
   const { children, fullWidth, ...other } = props
 
   return (
@@ -40,13 +40,13 @@ const Input = (props) => {
 }
 
 // Component Properties
-Input.propTypes = {
+Select.propTypes = {
   type: PropTypes.string,
   fullWidth: PropTypes.bool
 }
-Input.defaultProps = {
+Select.defaultProps = {
   type: 'button',
   fullWidth: false
 }
 
-export default Input
+export default Select

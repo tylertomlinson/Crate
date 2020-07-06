@@ -33,15 +33,15 @@ class List extends PureComponent {
       <div>
         {/* SEO */}
         <Helmet>
-          <title>Crates for everyone! - Crate</title>
+          <title>Crates for you! - Crate</title>
         </Helmet>
 
         {/* Top title bar */}
         <Grid style={{ backgroundColor: grey }}>
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-            <H3 font="secondary">Crates for everyone!</H3>
+            <H3 font="secondary">Crates for you!</H3>
 
-            <p style={{ marginTop: '1em', color: grey2 }}>You can choose crate which suits your need. You can also
+            <p style={{ marginTop: '1em', color: grey2 }}>You can choose crates which suits your need. You can also
               subscribe to multiple crates.</p>
           </GridCell>
         </Grid>
