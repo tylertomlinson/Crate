@@ -26,7 +26,7 @@ export const userSignup = {
 
     gender: {
       name: 'gender',
-      type: GraphQLInt
+      type: GraphQLString
     }
   },
   resolve: create

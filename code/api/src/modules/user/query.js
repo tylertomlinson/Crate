@@ -39,10 +39,10 @@ export const userLogin = {
       type: GraphQLString
     }, 
 
-    // gender: {
-    //   name: 'gender',
-    //   type: GraphQLString
-    // }
+    gender: {
+      name: 'gender',
+      type: GraphQLString
+    }
   },
   resolve: login
 }
