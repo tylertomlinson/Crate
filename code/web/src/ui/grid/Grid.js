@@ -1,4 +1,5 @@
-// Imports
+// Imports This component is responsible for the display properties that are used throughout the application. When a block of jsx is rendered wrapped in this component, the rendered 
+// jsx will inherit the display properties of this component
 import React from 'react'
 import PropTypes from 'prop-types'
 

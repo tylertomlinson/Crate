@@ -11,6 +11,8 @@ import * as subscription from '../modules/subscription/api/state'
 import * as crate from '../modules/crate/api/state'
 
 // App Reducer
+//Here is where we receive and combine the reducer objects to save into the Redux store. 
+// These objects are combined and saved to the store bellow on line 41
 const appReducer = combineReducers({
   common,
   user,
@@ -36,6 +38,7 @@ if (typeof window !== 'undefined') {
 }
 
 // Store
+// Here is where we save the rootReducer which is our return from the appReducer to the store
 export const store = createStore(
   rootReducer,
   initialState,

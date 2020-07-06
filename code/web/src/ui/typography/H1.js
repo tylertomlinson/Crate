@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { primary, secondary } from '../common/fonts'
 
 // Component
+// More styled elements related to all H1,2,3,4 used in the project
 const H1 = (props) => {
   const { children, font, ...others } = props
 

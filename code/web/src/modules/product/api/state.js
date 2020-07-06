@@ -17,6 +17,7 @@ import {
 // Product list
 
 // Initial State
+// Here we are setting an intialState object for our REdux reducer function
 const productsInitialState = {
   isLoading: false,
   error: null,
@@ -24,6 +25,8 @@ const productsInitialState = {
 }
 
 // State
+// From our Action creator functions in the actions.js file, we have a swith statement based of the type property.
+// we then return a state object from these reducers which we use to send to the Redux store
 export const products = (state = productsInitialState, action) => {
   switch (action.type) {
     case PRODUCTS_GET_LIST_REQUEST:

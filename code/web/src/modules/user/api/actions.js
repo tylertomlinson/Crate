@@ -21,12 +21,13 @@ export function setUser(token, user) {
   } else {
     delete axios.defaults.headers.common['Authorization'];
   }
-
+  console.log( user, token )
   return { type: SET_USER, user }
 }
 
 // Login a user using credentials
 export function login(userCredentials, isLoading = true) {
+  console.log(userCredentials)
   return dispatch => {
     dispatch({
       type: LOGIN_REQUEST,
@@ -39,6 +40,7 @@ export function login(userCredentials, isLoading = true) {
       fields: ['user {name, email, role}', 'token']
     }))
       .then(response => {
+        console.log(response)
         let error = ''
 
         if (response.data.errors && response.data.errors.length > 0) {
@@ -77,13 +79,27 @@ export function loginSetUserLocalStorageAndCookie(token, user) {
 }
 
 // Register a user
-export function register(userDetails) {
+export function register(userDetails, isLoading = true) {
+  // console.log(userDetails)
   return dispatch => {
+    // dispatch({
+    //   type: LOGIN_REQUEST,
+    //   isLoading
+    // })
+
     return axios.post(routeApi, mutation({
       operation: 'userSignup',
       variables: userDetails,
       fields: ['id', 'name', 'email']
     }))
+    // .then(response => {
+    //   console.log(response)
+    //   const user = {
+    //     name: data.data.userSignup.name,
+    //     email: data.data.userSignup.email
+
+    //   }
+    // })
   }
 }
 

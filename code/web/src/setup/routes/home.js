@@ -1,4 +1,6 @@
 // App Imports
+
+// This file contains the root path '/' information, as well as the '/men', '/women' etc. paths from the root path
 import Home from '../../modules/pages/Home'
 import Men from '../../modules/pages/Men'
 import Women from '../../modules/pages/Women'

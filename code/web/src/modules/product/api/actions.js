@@ -6,6 +6,7 @@ import { query, mutation } from 'gql-query-builder'
 import { routeApi } from '../../../setup/routes'
 
 // Actions Types
+// These are the action types used by the Action Creators and reducers to communicate with Redux in the state.js file in this folder
 export const PRODUCTS_GET_LIST_REQUEST = 'PRODUCTS/GET_LIST_REQUEST'
 export const PRODUCTS_GET_LIST_RESPONSE = 'PRODUCTS/GET_LIST_RESPONSE'
 export const PRODUCTS_GET_LIST_FAILURE = 'PRODUCTS/GET_LIST_FAILURE'
@@ -21,17 +22,20 @@ export const PRODUCTS_GET_RELATED_LIST_FAILURE = 'PRODUCTS/GET_RELATED_LIST_FAIL
 
 // Get list of products
 export function getList(isLoading = true, forceRefresh = false) {
+  // this is resetting any existing data in the current store 
   return dispatch => {
     dispatch({
       type: PRODUCTS_GET_LIST_REQUEST,
       error: null,
       isLoading
     })
-
+    // Here we are making a query request to GraphQl, to return all products with the related fields of id, name, slug, description, image, createdAt and updatedAt
     return axios.post(routeApi, query({
       operation: 'products',
       fields: ['id', 'name', 'slug', 'description', 'image', 'createdAt', 'updatedAt']
     }))
+
+    // If the resposne if ok we are then saving this information to the redux store
       .then(response => {
         if (response.status === 200) {
           dispatch({
@@ -59,18 +63,21 @@ export function getList(isLoading = true, forceRefresh = false) {
 }
 
 // Get single product
+
+// this function is realted to a single product
 export function get(slug, isLoading = true) {
   return dispatch => {
     dispatch({
       type: PRODUCTS_GET_REQUEST,
       isLoading
     })
-
+    // This query is provided a variable 'slug' to specify which specific item we want to be returned from the query
     return axios.post(routeApi, query({
       operation: 'product',
       variables: { slug },
       fields: ['id', 'name', 'slug', 'description', 'image', 'createdAt']
     }))
+    // If the response returns an error, we save the error to the store, if everything is ok, the response date is saved to the store
       .then(response => {
         if (response.status === 200) {
           if (response.data.errors && response.data.errors.length > 0) {
@@ -106,6 +113,7 @@ export function get(slug, isLoading = true) {
 }
 
 // Get single product by Id
+// Here we are doing the same as above, but because we know the id, we avoid the error handling and save the fethed product information directly to the store
 export function getById(productId) {
   return dispatch => {
     return axios.post(routeApi, query({

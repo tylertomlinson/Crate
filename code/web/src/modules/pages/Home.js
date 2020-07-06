@@ -1,4 +1,7 @@
 // Imports
+
+// Based on which url path the user is using, the components in the 'pages' directory are rendered accordingly. This component 
+// is rendered from the '/' path. 
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -32,6 +35,7 @@ const Home = (props) => (
       color: white
     }}>
       {/* SEO */}
+      {/* This helmet which is seen across the site is used for SEO purposes and be customized according to the current page */}
       <Helmet>
         <title>Monthly supply of clothes and accessories for Men and Women - Crate</title>
       </Helmet>
@@ -45,6 +49,7 @@ const Home = (props) => (
         </H4>
 
         {/* Call to action */}
+        {/* if the user is authenticated, they will see a call to action to pick a crate subscription, if not they will see a call to action to signup for the service */}
         {
           props.user.isAuthenticated
             ? <Link to={crateRoutes.list.path}>

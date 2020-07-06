@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import { login } from './api/actions';
 
 // UI Imports
 import { Grid, GridCell } from '../../ui/grid'
@@ -18,6 +19,7 @@ import { white } from '../../ui/common/colors'
 // App Imports
 import { APP_URL } from '../../setup/config/env'
 import userRoutes from '../../setup/routes/user'
+import crateRoutes from '../../setup/routes/crate'
 import { messageShow, messageHide } from '../common/api/actions'
 import { register } from './api/actions'
 import AuthCheck from '../auth/AuthCheck'
@@ -50,7 +52,7 @@ class Signup extends Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-
+    
     this.setState({
       isLoading: true
     })
@@ -59,6 +61,7 @@ class Signup extends Component {
 
     this.props.register(this.state.user)
       .then(response => {
+        console.log(response)
         this.setState({
           isLoading: false
         })
@@ -66,23 +69,33 @@ class Signup extends Component {
         if (response.data.errors && response.data.errors.length > 0) {
           this.props.messageShow(response.data.errors[0].message)
         } else {
-          this.props.messageShow('Signed up successfully.')
-
-          this.props.history.push(userRoutes.login.path)
+          const userCredentials = {
+            name: response.data.data.userSignup.name,
+            email: response.data.data.userSignup.email
+          }
+          this.props.login(userCredentials, this.state.isLoading)
+          // this.props.history.push(crateRoutes.list.path)
+          // this.props.messageShow('Signed up successfully.')
+          
+          // this.props.history.push(crateRoutes.list.path)
         }
+      })
+      
+    
+      .then(() => {
+        console.log(this.props.history)
+        this.props.history.push(cratesRoutes.list.path)
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
       })
       .catch(error => {
         this.props.messageShow('There was some error signing you up. Please try again.')
-
+        console.log(error)
         this.setState({
           isLoading: false,
           error: 'Error signing up.'
         })
-      })
-      .then(() => {
-        window.setTimeout(() => {
-          this.props.messageHide()
-        }, 5000)
       })
   }
 
@@ -186,8 +199,9 @@ class Signup extends Component {
 // Component Properties
 Signup.propTypes = {
   register: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
   messageShow: PropTypes.func.isRequired,
   messageHide: PropTypes.func.isRequired
 }
 
-export default connect(null, { register, messageShow, messageHide })(withRouter(Signup))
+export default connect(null, { register, login, messageShow, messageHide })(withRouter(Signup))

@@ -9,6 +9,7 @@ import { level1, level2, level3, level4 } from "../common/shadows"
 import Icon from '../icon'
 
 // Component
+// The components in this file are more styled components used across the site. This one is for the text inputs used
 const File = (props) => {
   const { text, style, name, ...other } = props
 
