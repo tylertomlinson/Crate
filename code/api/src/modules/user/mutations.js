@@ -22,6 +22,11 @@ export const userSignup = {
     password: {
       name: 'password',
       type: GraphQLString
+    },
+
+    gender: {
+      name: 'gender',
+      type: GraphQLInt
     }
   },
   resolve: create
