@@ -41,7 +41,7 @@ export const userLogin = {
 
     gender: {
       name: 'gender',
-      type: GraphQLString
+      type: GraphQLInt
     }
   },
   resolve: login
