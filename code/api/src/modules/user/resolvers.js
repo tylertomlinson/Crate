@@ -8,10 +8,10 @@ import params from '../../config/params'
 import models from '../../setup/models'
 
 // Create
-export async function create(parentValue, { name, email, password }) {
+export async function create(parentValue, { name, email, password, gender }) {
   // Users exists with same email check
   const user = await models.User.findOne({ where: { email } })
-
+  
   if (!user) {
     // User does not exists
     const passwordHashed = await bcrypt.hash(password, serverConfig.saltRounds)
