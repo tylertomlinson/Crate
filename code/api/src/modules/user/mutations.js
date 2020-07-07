@@ -3,7 +3,7 @@ import { GraphQLString, GraphQLInt } from 'graphql'
 
 // App Imports
 import { UserType } from './types'
-import { create, remove } from './resolvers'
+import { create, remove, update } from './resolvers'
 
 // Create
 export const userSignup = {
@@ -30,6 +30,22 @@ export const userSignup = {
     }
   },
   resolve: create
+}
+
+//Update
+export const userUpdateStyle = {
+  type: UserType,
+  args: {
+    id: {
+      name: 'id',
+      type: GraphQLInt
+    },
+    style: {
+      name: 'style',
+      type: GraphQLString
+    }
+  },
+  resolve: update
 }
 
 // Remove
