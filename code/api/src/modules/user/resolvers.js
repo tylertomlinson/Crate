@@ -7,11 +7,20 @@ import serverConfig from '../../config/server'
 import params from '../../config/params'
 import models from '../../setup/models'
 
+//Update User Style
+export async function update(parentValue, { id, style }) {
+  return await models.User.update(
+    {
+      style
+    },
+    { where: { id } }
+  )}
+
 // Create
-export async function create(parentValue, { name, email, password }) {
+export async function create(parentValue, { name, email, password, gender }) {
   // Users exists with same email check
   const user = await models.User.findOne({ where: { email } })
-
+  const genderInt = parseInt(gender)
   if (!user) {
     // User does not exists
     const passwordHashed = await bcrypt.hash(password, serverConfig.saltRounds)
@@ -20,7 +29,7 @@ export async function create(parentValue, { name, email, password }) {
       name,
       email,
       password: passwordHashed,
-      gender
+      genderInt
     })
   } else {
     // User exists
