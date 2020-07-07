@@ -119,7 +119,8 @@ class List extends PureComponent {
                         </td>
                       </tr>
                     : list.length > 0
-                      ? list.map(({ id, image, name, description, createdAt, updatedAt }) => (
+                      ? list.map(({ id, image, name, description, createdAt, updatedAt }) => {(
+                      
                           <tr key={id}>
                             <td>
                               { name }
@@ -147,7 +148,7 @@ class List extends PureComponent {
                               </span>
                             </td>
                           </tr>
-                        ))
+                        )})
                       : <tr>
                           <td colSpan="6">
                             <EmptyMessage message="No crates to show."/>
