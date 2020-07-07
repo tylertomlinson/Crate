@@ -36,22 +36,33 @@ class Signup extends Component {
         name: '',
         email: '',
         password: '',
-        gender: ''
+        gender: null
       }
     }
   }
 
   onChange = (event) => {
-    let user = this.state.user
-    user[event.target.name] = event.target.value
+    console.log('event onChange', event.target.value)
+    let user = this.state.user;
 
+    if(event.target.name === 'gender') {
+      user[event.target.name] = parseInt(event.target.value)
+      
+    } else {
+      user[event.target.name] = event.target.value
+    }
+   
     this.setState({
       user
     })
   }
 
+ 
+
   onSubmit = (event) => {
     event.preventDefault()
+    console.log(this.state.user)
+
 
     this.setState({
       isLoading: true
@@ -67,6 +78,7 @@ class Signup extends Component {
 
         if (response.data.errors && response.data.errors.length > 0) {
           this.props.messageShow(response.data.errors[0].message)
+          throw new(error)
         } else {
           this.props.messageShow('Signed up successfully.')
           
@@ -171,8 +183,8 @@ class Signup extends Component {
                     style={{ marginTop: '1em' }}
                   >
                   <option value="">Click here to select your gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value={1}>Male</option>
+                  <option value={2}>Female</option>
                   </Select>
             </div>
 
