@@ -22,6 +22,16 @@ module.exports = {
         role: params.user.roles.user,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        name: 'Test',
+        email: 'test@test.com',
+        password: bcrypt.hashSync('123456', config.saltRounds),
+        role: params.user.roles.user,
+        style: 'casual',
+        gender: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ])
   },
