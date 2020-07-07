@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('crates', [
       {
-        name: 'Clothes',
+        name: 'Clothes for Men',
         description: 'A monthly supply of trendy clothes for men.',
         createdAt: new Date(),
         updatedAt: new Date()

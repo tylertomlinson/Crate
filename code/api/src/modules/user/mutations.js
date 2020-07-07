@@ -32,7 +32,7 @@ export const userSignup = {
   resolve: create
 }
 
-//Update
+//Update User Style
 export const userUpdateStyle = {
   type: UserType,
   args: {
