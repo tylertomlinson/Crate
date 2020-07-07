@@ -120,7 +120,7 @@ class List extends PureComponent {
                       </tr>
                     : list.length > 0
                       ? list.map(({ id, image, name, description, createdAt, updatedAt }) => {(
-                       
+                      
                           <tr key={id}>
                             <td>
                               { name }
