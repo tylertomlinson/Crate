@@ -13,7 +13,8 @@
     "start:prod": "npm run build:prod && npm run start:server",
     "build:prod": "babel src -s -D -d build",
     "start:server": "node build/index.js",
-    "publishheroku": "cd ../../ && git subtree push --prefix code/api heroku-be master || true"
+    "publishheroku": "cd ../../ && git subtree push --prefix code/api heroku-be master || true",
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +25,9 @@
     "@babel/node": "7.8.7",
     "@babel/plugin-transform-runtime": "7.9.0",
     "@babel/preset-env": "7.9.5",
-    "nodemon": "2.0.3"
+    "jest": "^26.1.0",
+    "nodemon": "2.0.3",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "@babel/runtime": "7.9.2",
