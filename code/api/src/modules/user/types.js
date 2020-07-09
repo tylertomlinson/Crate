@@ -1,5 +1,5 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
+import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLObject } from 'graphql'
 
 // User type
 const UserType = new GraphQLObjectType({
@@ -41,5 +41,21 @@ const UserGenderType = new GraphQLObjectType({
     name: { type: GraphQLString }
   })
 })
+
+// //User Results Type
+// const UserResultsType = new GraphQLObjectType({
+//   name: 'userResults',
+//   description: 'User Results Type',
+//
+//   fields:() => ({
+//     id: { type: GraphQLInt },
+//
+//     { tops: { type: GraphQLInt },
+//     bottoms: { type: GraphQLInt },
+//     dresses: { type: GraphQLInt },
+//     accessories: { type: GraphQLInt },
+//     shoes: { type: GraphQLInt }}
+//   })
+// })
 
 export { UserType, UserLoginType, UserGenderType }

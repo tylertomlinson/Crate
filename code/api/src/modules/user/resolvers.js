@@ -9,6 +9,28 @@ import models from '../../setup/models'
 
 //Update User Style
 export async function update(parentValue, { id, style }) {
+  var commaRemove = style.replace(/,/g, '')
+  const array = Array.from(commaRemove)
+  const styleResults = array.filter(function(entry) { return entry.trim() != ''; });
+  var counts = {};
+  var compare = 0;
+  var mostFrequent;
+  (function(array){
+    for(var i = 0, len = array.length; i < len; i++){
+      var number = array[i];
+      if(counts[number] === undefined){
+        counts[number] = 1;
+      }else{
+        counts[number] = counts[number] + 1;
+      }
+      if(counts[number] > compare){
+        compare = counts[number];
+        mostFrequent = styleResults[i];
+      }
+    }
+    return mostFrequent;
+  })(styleResults);
+  console.log(mostFrequent)
   return await models.User.update(
     {
       style
@@ -20,7 +42,7 @@ export async function update(parentValue, { id, style }) {
 export async function create(parentValue, { name, email, password, gender }) {
   // Users exists with same email check
   const user = await models.User.findOne({ where: { email } })
-  
+
   if (!user) {
     // User does not exists
     const passwordHashed = await bcrypt.hash(password, serverConfig.saltRounds)
