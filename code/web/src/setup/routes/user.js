@@ -1,6 +1,6 @@
 // App Imports
-import Login from '../../modules/user/Login'
-import Signup from '../../modules/user/Signup'
+import Login from '../../modules/user/Login/Login'
+import Signup from '../../modules/user/Signup/Signup'
 import Profile from '../../modules/user/Profile'
 import Subscriptions from '../../modules/user/Subscriptions'
 import StylePreferences from '../../modules/user/StylePreferences'
