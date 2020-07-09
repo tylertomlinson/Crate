@@ -4,13 +4,16 @@ import ImageTile from "../../ui/image/Tile";
 import { APP_URL } from "../../setup/config/env";
 import { level1 } from "../../ui/common/shadows";
 import { Grid, GridCell } from "../../ui/grid";
+import { Link, withRouter } from 'react-router-dom'
 import PropTypes from "prop-types";
+import { surveyResponse } from './api/actions'
 
 class Survey extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       gender: this.props.gender,
+      id: this.props.id,
       selectedStyleValues: {
         tops: null,
         bottoms: null,
@@ -32,9 +35,12 @@ class Survey extends PureComponent {
 
   submitForm = (e) => {
     e.preventDefault();
+    surveyResponse(this.state.selectedStyleValues, this.state.id)
+    .then(response => {
+      console.log('response', response)
+    })
 
-    console.log("You have selected:", this.state.selectedStyleValues);
-    console.log("state", this.state);
+   
   };
 
   render() {
@@ -350,6 +356,7 @@ class Survey extends PureComponent {
 // Component Properties
 Survey.propTypes = {
   gender: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired
 };
-
 export default Survey;
+// export default connect(null, { surveyResponse }) (withRouter(Survey));
