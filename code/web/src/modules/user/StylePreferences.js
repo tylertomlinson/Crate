@@ -37,7 +37,7 @@ class StylePreferences extends PureComponent {
         {/* Product list */}
         <Grid>
           <GridCell>
-                <Survey gender={this.props.user.details.gender} />
+                <Survey gender={this.props.user.details.gender} id={this.props.user.details.id}/>
           </GridCell>
         </Grid>
       </div>

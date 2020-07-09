@@ -43,6 +43,12 @@ export default (state = userInitialState, action) => {
         details: null
       }
 
+      // case SURVEY:
+      // return {
+      //   ...state,
+      //   isLoading: false,
+      // }
+
     default:
       return state
   }

@@ -11,8 +11,28 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
+export const SURVEY = 'AUTH/SURVEY'
 
 // Actions
+
+export function surveyResponse(survey, userId) {
+  let obj = {
+    id: userId,
+    style: '4, 4, 2, 1, 4'
+  }
+  // return dispatch => {
+  //   dispatch({
+  //     type: SURVEY,
+  //     isLoading
+  //   })
+
+    return axios.post(routeApi, mutation({
+      operation: 'userUpdateStyle',
+      variables: obj,
+      fields: ['id', 'style']
+    }))
+    
+} 
 
 // Set a user after login or using localStorage token
 export function setUser(token, user) {
@@ -21,7 +41,7 @@ export function setUser(token, user) {
   } else {
     delete axios.defaults.headers.common['Authorization'];
   }
-
+  console.log('user', user)
   return { type: SET_USER, user }
 }
 
@@ -36,7 +56,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role, gender}', 'token']
+      fields: ['user {name, email, role, gender, id, style}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -78,6 +98,7 @@ export function loginSetUserLocalStorageAndCookie(token, user) {
 
 // Register a user
 export function register(userDetails) {
+  console.log('userDetails', userDetails)
   return dispatch => {
     return axios.post(routeApi, mutation({
       operation: 'userSignup',
