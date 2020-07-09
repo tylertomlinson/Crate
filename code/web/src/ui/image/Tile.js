@@ -14,7 +14,7 @@ const Tile = (props) => {
       <style jsx>{`
         div {
           background-image:url('${ image }');
-          background-size: 100% auto;
+          background-size: cover;
           box-shadow: ${ shadow ? shadow : 'none' };
         }
       `}</style>

@@ -8,13 +8,7 @@ import { Helmet } from "react-helmet";
 import { Grid, GridCell } from "../../ui/grid";
 import { H3 } from "../../ui/typography";
 import { grey, grey2 } from "../../ui/common/colors";
-import Survey from "../../ui/survey/Survey";
-
-// App Imports
-import { getListByUser } from "../subscription/api/actions";
-import Loading from "../common/Loading";
-import EmptyMessage from "../common/EmptyMessage";
-import SubscriptionItem from "../subscription/Item";
+import Survey from "./Survey";
 
 // Component
 class StylePreferences extends PureComponent {
@@ -22,8 +16,6 @@ class StylePreferences extends PureComponent {
     super();
     this.state = {};
   }
-
-
 
   render() {
     return (
@@ -45,7 +37,7 @@ class StylePreferences extends PureComponent {
         {/* Product list */}
         <Grid>
           <GridCell>
-                <Survey />
+                <Survey gender={this.props.user.details.gender} />
           </GridCell>
         </Grid>
       </div>
@@ -53,4 +45,16 @@ class StylePreferences extends PureComponent {
   }
 }
 
-export default StylePreferences;
+// Component Properties
+StylePreferences.propTypes = {
+  user: PropTypes.object.isRequired,
+}
+
+// Component State
+function profileState(state) {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(profileState)(StylePreferences)
