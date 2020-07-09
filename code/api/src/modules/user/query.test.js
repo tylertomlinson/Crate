@@ -29,12 +29,21 @@ describe ("user queries", () => {
     expect(response.body.data.users.length).toEqual(3)
   })
 
-  it("returns users gender", async() => {
+  it("returns an users gender", async() => {
     const response= await request(server)
     .get('/')
     .send({ query: '{ users { gender } }'})
     .expect(200)
 
     expect(response.body.data.users[2]).toEqual({"gender": 1})
+  })
+
+  it("returns an users style", async() => {
+    const response= await request(server)
+    .get('/')
+    .send({ query: '{ users { style } }'})
+    .expect(200)
+
+    expect(response.body.data.users[2]).toEqual({"style": 'casual'})
   })
 })
