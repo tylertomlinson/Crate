@@ -30,10 +30,20 @@ export async function update(parentValue, { id, style }) {
     }
     return mostFrequent;
   })(styleResults);
+  var userStyle = "unknown"
+  if(mostFrequent === "1") {
+    userStyle = "casual"}
+  if(mostFrequent === "2") {
+    userStyle = "classic"}
+  if(mostFrequent === "3") {
+    userStyle = "exotic"}
+  if(mostFrequent === "4") {
+    userStyle = "vintage"}
+  console.log(userStyle)
   console.log(mostFrequent)
   return await models.User.update(
     {
-      style
+      style: userStyle
     },
     { where: { id } }
   )}
