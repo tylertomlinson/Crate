@@ -7,6 +7,7 @@ import { Grid, GridCell } from "../../ui/grid";
 import { Link, withRouter } from 'react-router-dom'
 import PropTypes from "prop-types";
 import { surveyResponse } from './api/actions'
+import { connect } from 'react-redux'
 
 class Survey extends PureComponent {
   constructor(props) {
@@ -14,6 +15,7 @@ class Survey extends PureComponent {
     this.state = {
       gender: this.props.gender,
       id: this.props.id,
+      user: this.props.user,
       selectedStyleValues: {
         tops: null,
         bottoms: null,
@@ -35,11 +37,8 @@ class Survey extends PureComponent {
 
   submitForm = (e) => {
     e.preventDefault();
-    surveyResponse(this.state.selectedStyleValues, this.state.id)
-    .then(response => {
-      console.log('response', response)
-    })
-
+    this.props.surveyResponse(this.state.selectedStyleValues, this.state.id, this.state.user)
+    
    
   };
 
@@ -62,6 +61,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={1}
                 onChange={(e) => this.handleChange(e, "tops")}
                 checked={this.state.selectedStyleValues.tops === 1}
@@ -76,6 +76,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={2}
                 onChange={(e) => this.handleChange(e, "tops")}
                 checked={this.state.selectedStyleValues.tops === 2}
@@ -90,6 +91,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={3}
                 onChange={(e) => this.handleChange(e, "tops")}
                 checked={this.state.selectedStyleValues.tops === 3}
@@ -104,6 +106,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={4}
                 onChange={(e) => this.handleChange(e, "tops")}
                 checked={this.state.selectedStyleValues.tops === 4}
@@ -121,6 +124,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={1}
                 onChange={(e) => this.handleChange(e, "bottoms")}
                 checked={this.state.selectedStyleValues.bottoms === 1}
@@ -135,6 +139,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={2}
                 onChange={(e) => this.handleChange(e, "bottoms")}
                 checked={this.state.selectedStyleValues.bottoms === 2}
@@ -149,6 +154,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={3}
                 onChange={(e) => this.handleChange(e, "bottoms")}
                 checked={this.state.selectedStyleValues.bottoms === 3}
@@ -163,6 +169,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={4}
                 onChange={(e) => this.handleChange(e, "bottoms")}
                 checked={this.state.selectedStyleValues.bottoms === 4}
@@ -180,6 +187,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={1}
                 onChange={(e) => this.handleChange(e, "dresses")}
                 checked={this.state.selectedStyleValues.dresses === 1}
@@ -194,6 +202,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={2}
                 onChange={(e) => this.handleChange(e, "dresses")}
                 checked={this.state.selectedStyleValues.dresses === 2}
@@ -208,6 +217,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={3}
                 onChange={(e) => this.handleChange(e, "dresses")}
                 checked={this.state.selectedStyleValues.dresses === 3}
@@ -222,6 +232,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={4}
                 onChange={(e) => this.handleChange(e, "dresses")}
                 checked={this.state.selectedStyleValues.dresses === 4}
@@ -239,6 +250,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={1}
                 onChange={(e) => this.handleChange(e, "shoes")}
                 checked={this.state.selectedStyleValues.shoes === 1}
@@ -253,6 +265,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={2}
                 onChange={(e) => this.handleChange(e, "shoes")}
                 checked={this.state.selectedStyleValues.shoes === 2}
@@ -267,6 +280,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={3}
                 onChange={(e) => this.handleChange(e, "shoes")}
                 checked={this.state.selectedStyleValues.shoes === 3}
@@ -281,6 +295,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={4}
                 onChange={(e) => this.handleChange(e, "shoes")}
                 checked={this.state.selectedStyleValues.shoes === 4}
@@ -298,6 +313,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={1}
                 onChange={(e) => this.handleChange(e, "accessories")}
                 checked={this.state.selectedStyleValues.accessories === 1}
@@ -312,6 +328,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={2}
                 onChange={(e) => this.handleChange(e, "accessories")}
                 checked={this.state.selectedStyleValues.accessories === 2}
@@ -326,6 +343,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={3}
                 onChange={(e) => this.handleChange(e, "accessories")}
                 checked={this.state.selectedStyleValues.accessories === 3}
@@ -340,6 +358,7 @@ class Survey extends PureComponent {
               />
               <input
                 type="radio"
+                required="required"
                 value={4}
                 onChange={(e) => this.handleChange(e, "accessories")}
                 checked={this.state.selectedStyleValues.accessories === 4}
@@ -353,10 +372,15 @@ class Survey extends PureComponent {
   }
 }
 
+function profileState(state) {
+  return {
+    user: state.user
+  }
+}
 // Component Properties
 Survey.propTypes = {
   gender: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired
 };
-export default Survey;
-// export default connect(null, { surveyResponse }) (withRouter(Survey));
+// export default Survey;
+export default connect(profileState, { surveyResponse } ) (withRouter(Survey));

@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
+import { surveyResponse } from './api/actions'
 
 // UI Imports
 import { Grid, GridCell } from "../../ui/grid";
@@ -15,6 +16,10 @@ class StylePreferences extends PureComponent {
   constructor() {
     super();
     this.state = {};
+  }
+  
+  surveyStore = (styleResults, id, user ) => {
+    this.props.surveyResponse(styleResults, id)
   }
 
   render() {
@@ -37,7 +42,11 @@ class StylePreferences extends PureComponent {
         {/* Product list */}
         <Grid>
           <GridCell>
-                <Survey gender={this.props.user.details.gender} id={this.props.user.details.id}/>
+          {!this.props.user.details.style && <Survey gender={this.props.user.details.gender} id={this.props.user.details.id} user={this.props.user.details} survey={this.surveyStore}/>}
+
+          {this.props.user.details.style && <h2>survey complete</h2> }
+          {/* {!this.props.user.details.style && <Survey gender={this.props.user.details.gender} id={this.props.user.details.id} user={this.props.user.details}/>} */}
+                {/* <Survey gender={this.props.user.details.gender} id={this.props.user.details.id}/> */}
           </GridCell>
         </Grid>
       </div>
@@ -57,4 +66,4 @@ function profileState(state) {
   }
 }
 
-export default connect(profileState)(StylePreferences)
+export default connect(profileState, { surveyResponse })(StylePreferences)
