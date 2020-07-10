@@ -41,12 +41,11 @@ export async function update(parentValue, { id, style }) {
     userStyle = "vintage"}
   console.log(userStyle)
   console.log(mostFrequent)
-  return await models.User.update(
-    {
-      style: userStyle
-    },
-    { where: { id } }
-  )}
+  await models.User.update(
+    { style: userStyle },
+    { where: { id } })
+  return await models.User.findOne({ where: { id } })  
+  }
 
 // Create
 export async function create(parentValue, { name, email, password, gender }) {
