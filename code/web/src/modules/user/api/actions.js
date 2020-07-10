@@ -5,33 +5,59 @@ import cookie from 'js-cookie'
 
 // App Imports
 import { routeApi } from '../../../setup/routes'
+import Survey from '../Survey'
 
 // Actions Types
 export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
-export const SURVEY = 'AUTH/SURVEY'
+export const SURVEY = 'SURVEY'
 
 // Actions
+export function querySurvey(userId) {
+  return (dispatch) => {
+    const result = {
+      id: userId
+    }
+      return axios.post(routeApi, query({
+        operation: 'user',
+        variables: result,
+        fields: ['style']
+      }))
+      .then(response => {
+        
+        const user = response.data.data.user
+        console.log(user)
+        
+         return dispatch({
+          type: SURVEY,
+          user,
+        })
+      })
+  }
+}
+
 
 export function surveyResponse(survey, userId) {
+  return dispatch => {
+    const result = Object.values(survey).toString();
+ 
   let obj = {
     id: userId,
-    style: '4, 4, 2, 1, 4'
+    style: result
   }
-  // return dispatch => {
-  //   dispatch({
-  //     type: SURVEY,
-  //     isLoading
-  //   })
-
     return axios.post(routeApi, mutation({
       operation: 'userUpdateStyle',
       variables: obj,
       fields: ['id', 'style']
     }))
-    
+    .then(response => {
+      if(response.status === 200) {
+        dispatch(querySurvey(userId))
+      }
+    })
+  }
 } 
 
 // Set a user after login or using localStorage token
@@ -41,12 +67,12 @@ export function setUser(token, user) {
   } else {
     delete axios.defaults.headers.common['Authorization'];
   }
-  console.log('user', user)
   return { type: SET_USER, user }
 }
 
 // Login a user using credentials
 export function login(userCredentials, isLoading = true) {
+  console.log('usercredentials', userCredentials)
   return dispatch => {
     dispatch({
       type: LOGIN_REQUEST,
@@ -60,7 +86,7 @@ export function login(userCredentials, isLoading = true) {
     }))
       .then(response => {
         let error = ''
-
+       
         if (response.data.errors && response.data.errors.length > 0) {
           error = response.data.errors[0].message
         } else if (response.data.data.userLogin.token !== '') {
