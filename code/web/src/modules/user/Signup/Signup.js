@@ -61,9 +61,7 @@ class Signup extends Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    console.log(this.state.user)
-
-
+    
     this.setState({
       isLoading: true
     })
@@ -72,7 +70,7 @@ class Signup extends Component {
 
     this.props.register(this.state.user)
       .then(response => {
-        console.log(response)
+        
         this.setState({
           isLoading: false
         })
