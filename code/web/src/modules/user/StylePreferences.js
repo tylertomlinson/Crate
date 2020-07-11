@@ -3,13 +3,14 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import { surveyResponse } from './api/actions'
+import { surveyResponse } from "./api/actions";
 
 // UI Imports
 import { Grid, GridCell } from "../../ui/grid";
 import { H3 } from "../../ui/typography";
 import { grey, grey2 } from "../../ui/common/colors";
 import Survey from "./Survey";
+import ThankYou from "./ThankYou";
 
 // Component
 class StylePreferences extends PureComponent {
@@ -17,10 +18,10 @@ class StylePreferences extends PureComponent {
     super();
     this.state = {};
   }
-  
-  surveyStore = (styleResults, id, user ) => {
-    this.props.surveyResponse(styleResults, id)
-  }
+
+  surveyStore = (styleResults, id, user) => {
+    this.props.surveyResponse(styleResults, id);
+  };
 
   render() {
     return (
@@ -33,20 +34,34 @@ class StylePreferences extends PureComponent {
         {/* Top title bar */}
         <Grid style={{ backgroundColor: grey }}>
           <GridCell style={{ padding: "2em", textAlign: "center" }}>
-            <H3 font="secondary">Fill out your survey profile</H3>
+            {!this.props.user.details.style && (
+              <H3 font="secondary">Fill out your survey profile</H3>
+            )}
+            {this.props.user.details.style && (
+              <H3 font="secondary">Thank you!</H3>
+            )}
 
-            <p style={{ marginTop: "1em", color: grey2 }}>Tell your personal stylist about style preferences.</p>
+            {!this.props.user.details.style && (
+              <p style={{ marginTop: "1em", color: grey2 }}>
+                Tell your personal stylist about style preferences.
+              </p>
+            )}
           </GridCell>
         </Grid>
 
-        {/* Product list */}
         <Grid>
           <GridCell>
-          {!this.props.user.details.style && <Survey gender={this.props.user.details.gender} id={this.props.user.details.id} user={this.props.user.details} survey={this.surveyStore}/>}
-
-          {this.props.user.details.style && <h2>survey complete</h2> }
-          {/* {!this.props.user.details.style && <Survey gender={this.props.user.details.gender} id={this.props.user.details.id} user={this.props.user.details}/>} */}
-                {/* <Survey gender={this.props.user.details.gender} id={this.props.user.details.id}/> */}
+            {!this.props.user.details.style && (
+              <Survey
+                gender={this.props.user.details.gender}
+                id={this.props.user.details.id}
+                user={this.props.user.details}
+                survey={this.surveyStore}
+              />
+            )}
+            {this.props.user.details.style && (
+              <ThankYou style={this.props.user.details.style} />
+            )}
           </GridCell>
         </Grid>
       </div>
@@ -57,13 +72,14 @@ class StylePreferences extends PureComponent {
 // Component Properties
 StylePreferences.propTypes = {
   user: PropTypes.object.isRequired,
-}
+  surveyResponse: PropTypes.func.isRequired
+};
 
 // Component State
 function profileState(state) {
   return {
-    user: state.user
-  }
+    user: state.user,
+  };
 }
 
-export default connect(profileState, { surveyResponse })(StylePreferences)
+export default connect(profileState, { surveyResponse })(StylePreferences);
