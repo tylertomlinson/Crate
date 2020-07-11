@@ -5,16 +5,16 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 //App Imports
-import { APP_URL } from "../../setup/config/env";
-import { surveyResponse } from "./api/actions";
+import { APP_URL } from "../../../../setup/config/env";
+import { surveyResponse } from "../../api/actions";
 
 //UI Imports
-import { Grid, GridCell } from "../../ui/grid";
-import Input from "../../ui/input/Input";
-import Button from "../../ui/button";
-import ImageTile from "../../ui/image/Tile";
-import { level1 } from "../../ui/common/shadows";
-import H2 from "../../ui/typography/H2";
+import { Grid, GridCell } from "../../../../ui/grid";
+import Input from "../../../../ui/input/Input";
+import Button from "../../../../ui/button";
+import ImageTile from "../../../../ui/image/Tile";
+import { level1 } from "../../../../ui/common/shadows";
+import H2 from "../../../../ui/typography/H2";
 
 class Survey extends PureComponent {
   constructor(props) {

@@ -5,7 +5,6 @@ import cookie from 'js-cookie'
 
 // App Imports
 import { routeApi } from '../../../setup/routes'
-import Survey from '../Survey'
 
 // Actions Types
 export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'

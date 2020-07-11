@@ -3,7 +3,7 @@ import Login from '../../modules/user/Login/Login'
 import Signup from '../../modules/user/Signup/Signup'
 import Profile from '../../modules/user/Profile'
 import Subscriptions from '../../modules/user/Subscriptions'
-import StylePreferences from '../../modules/user/StylePreferences'
+import StylePreferences from '../../modules/user/StylePreferences/StylePreferences'
 
 // User routes
 export default {

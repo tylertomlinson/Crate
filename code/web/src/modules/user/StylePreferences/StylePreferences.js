@@ -3,14 +3,14 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import { surveyResponse } from "./api/actions";
+import { surveyResponse } from "../api/actions";
 
 // UI Imports
-import { Grid, GridCell } from "../../ui/grid";
-import { H3 } from "../../ui/typography";
-import { grey, grey2 } from "../../ui/common/colors";
-import Survey from "./Survey";
-import ThankYou from "./ThankYou";
+import { Grid, GridCell } from "../../../ui/grid";
+import { H3 } from "../../../ui/typography";
+import { grey, grey2 } from "../../../ui/common/colors";
+import Survey from "../Login/Survey/Survey";
+import ThankYou from "../ThankYou";
 
 // Component
 class StylePreferences extends PureComponent {
