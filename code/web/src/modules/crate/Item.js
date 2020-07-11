@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 // UI Imports
 import Card from '../../ui/card/Card'
@@ -42,8 +42,7 @@ class Item extends PureComponent {
         } else {
           this.props.messageShow('Subscribed successfully.')
 
-          // this.props.history.push(userRoutes.subscriptions.path)
-          this.props.history.push(userRoutes.stylepreferences.path)
+          {!this.props.user.details.style ? this.props.history.push(userRoutes.stylepreferences.path) : this.props.history.push(userRoutes.subscriptions.path) }
         }
       })
       .catch(error => {
