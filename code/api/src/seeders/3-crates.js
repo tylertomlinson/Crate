@@ -4,41 +4,23 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('crates', [
       {
-        name: 'Clothes for Men',
-        description: 'A monthly supply of trendy clothes for men.',
+        name: 'Clothes',
+        description: 'A monthly supply of trendy clothes.',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: 'Clothes for Women',
-        description: 'A monthly supply of trendy clothes for women.',
+        name: 'Accessories',
+        description: 'A monthly supply of trendy accessories.',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: 'Accessories for Men',
-        description: 'A monthly supply of trendy accessories for men',
+        name: 'Clothes and Accessories',
+        description: 'A monthly supply of trendy clothes and accessories.',
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      {
-        name: 'Accessories for Women',
-        description: 'A monthly supply of trendy accessories for women',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        name: 'Clothes and Accessories for Men',
-        description: 'A monthly supply of trendy clothes and accessories for men',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        name: 'Clothes and Accessories for Women',
-        description: 'A monthly supply of trendy clothes and accessories for women',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
     ], {})
   },
 

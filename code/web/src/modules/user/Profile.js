@@ -1,19 +1,19 @@
 // Imports
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 // UI Imports
-import { Grid, GridCell } from '../../ui/grid'
-import { H3, H4 } from '../../ui/typography'
-import Button from '../../ui/button'
-import { grey, grey2 } from '../../ui/common/colors'
+import { Grid, GridCell } from "../../ui/grid";
+import { H3, H4 } from "../../ui/typography";
+import Button from "../../ui/button";
+import { grey, grey2 } from "../../ui/common/colors";
 
 // App Imports
-import userRoutes from '../../setup/routes/user'
-import { logout } from './api/actions'
+import userRoutes from "../../setup/routes/user";
+import { logout } from "./api/actions";
 
 // Component
 const Profile = (props) => (
@@ -25,38 +25,59 @@ const Profile = (props) => (
 
     {/* Top title bar */}
     <Grid style={{ backgroundColor: grey }}>
-      <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+      <GridCell style={{ padding: "2em", textAlign: "center" }}>
         <H3 font="secondary">My profile</H3>
       </GridCell>
     </Grid>
 
     <Grid>
-      <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-        <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
-        <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.gender === 1 ? 'Gender: Male' : 'Gender: Female'}</H4>
-        <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
-        
+      <GridCell style={{ padding: "2em", textAlign: "center" }}>
+        <H4 style={{ marginBottom: "0.5em" }}>
+          Name: {props.user.details.name}
+        </H4>
+        <H4 style={{ marginBottom: "0.5em" }}>
+          {props.user.details.gender === 1 ? "Gender: Male" : "Gender: Female"}
+        </H4>
+        <H4 style={{ marginBottom: "0.5em" }}>
+          Email: {props.user.details.email}
+        </H4>
+        {!props.user.details.style ? (
+          <p style={{ color: grey2, marginBottom: "2em" }}>
+            You have no style yet! Subscribe to your first crate to take the
+            style survey.
+          </p>
+        ) : (
+          <H4 style={{ marginBottom: "0.5em" }}>Your style is: {props.user.details.style}</H4>
+        )}
+
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>
         </Link>
 
-        <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
+        <Button
+          theme="secondary"
+          onClick={props.logout}
+          style={{ marginLeft: "1em" }}
+        >
+          Logout
+        </Button>
+        
       </GridCell>
     </Grid>
   </div>
-)
+);
 
 // Component Properties
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
-  logout: PropTypes.func.isRequired
-}
+  logout: PropTypes.func.isRequired,
+};
 
 // Component State
 function profileState(state) {
   return {
-    user: state.user
-  }
+    user: state.user,
+  };
 }
 
-export default connect(profileState, { logout })(Profile)
+export default connect(profileState, { logout })(Profile);
