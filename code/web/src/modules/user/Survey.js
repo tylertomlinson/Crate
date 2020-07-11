@@ -1,13 +1,20 @@
+//Imports
 import React, { PureComponent } from "react";
-import H2 from "../../ui/typography/H2";
-import ImageTile from "../../ui/image/Tile";
-import { APP_URL } from "../../setup/config/env";
-import { level1 } from "../../ui/common/shadows";
-import { Grid, GridCell } from "../../ui/grid";
-import { Link, withRouter } from 'react-router-dom'
 import PropTypes from "prop-types";
-import { surveyResponse } from './api/actions'
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+//App Imports
+import { APP_URL } from "../../setup/config/env";
+import { surveyResponse } from "./api/actions";
+
+//UI Imports
+import { Grid, GridCell } from "../../ui/grid";
+import Input from "../../ui/input/Input";
+import Button from "../../ui/button";
+import ImageTile from "../../ui/image/Tile";
+import { level1 } from "../../ui/common/shadows";
+import H2 from "../../ui/typography/H2";
 
 class Survey extends PureComponent {
   constructor(props) {
@@ -37,9 +44,11 @@ class Survey extends PureComponent {
 
   submitForm = (e) => {
     e.preventDefault();
-    this.props.surveyResponse(this.state.selectedStyleValues, this.state.id, this.state.user)
-    
-   
+    this.props.surveyResponse(
+      this.state.selectedStyleValues,
+      this.state.id,
+      this.state.user
+    );
   };
 
   render() {
@@ -59,9 +68,9 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/casual/${genderString}-tops-casual.jpg`}
               />
-              <input
+              <Input
                 type="radio"
-                required="required"
+                required
                 value={1}
                 onChange={(e) => this.handleChange(e, "tops")}
                 checked={this.state.selectedStyleValues.tops === 1}
@@ -74,7 +83,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/classic/${genderString}-tops-classic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={2}
@@ -89,7 +98,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/exotic/${genderString}-tops-exotic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={3}
@@ -104,7 +113,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/vintage/${genderString}-tops-vintage.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={4}
@@ -122,7 +131,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/casual/${genderString}-bottoms-casual.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={1}
@@ -137,7 +146,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/classic/${genderString}-bottoms-classic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={2}
@@ -152,7 +161,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/exotic/${genderString}-bottoms-exotic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={3}
@@ -167,7 +176,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/vintage/${genderString}-bottoms-vintage.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={4}
@@ -185,7 +194,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/casual/${genderString}-${category}-casual.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={1}
@@ -200,7 +209,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/classic/${genderString}-${category}-classic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={2}
@@ -215,7 +224,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/exotic/${genderString}-${category}-exotic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={3}
@@ -230,7 +239,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/vintage/${genderString}-${category}-vintage.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={4}
@@ -248,7 +257,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/casual/${genderString}-shoes-casual.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={1}
@@ -263,7 +272,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/classic/${genderString}-shoes-classic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={2}
@@ -278,7 +287,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/exotic/${genderString}-shoes-exotic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={3}
@@ -293,7 +302,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/vintage/${genderString}-shoes-vintage.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={4}
@@ -311,7 +320,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/casual/${genderString}-accessories-casual.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={1}
@@ -326,7 +335,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/classic/${genderString}-accessories-classic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={2}
@@ -341,7 +350,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/exotic/${genderString}-accessories-exotic.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={3}
@@ -356,7 +365,7 @@ class Survey extends PureComponent {
                 shadow={level1}
                 image={`${APP_URL}/images/survey/${genderString}/vintage/${genderString}-accessories-vintage.jpg`}
               />
-              <input
+              <Input
                 type="radio"
                 required="required"
                 value={4}
@@ -366,7 +375,13 @@ class Survey extends PureComponent {
             </GridCell>
           </Grid>
         </GridCell>
-        <button>Submit</button>
+        <Button
+          type="submit"
+          theme="primary"
+          style={{ marginLeft: "1em" }}
+        >
+          Submit
+        </Button>
       </form>
     );
   }
@@ -374,13 +389,15 @@ class Survey extends PureComponent {
 
 function profileState(state) {
   return {
-    user: state.user
-  }
+    user: state.user,
+  };
 }
 // Component Properties
 Survey.propTypes = {
   gender: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  user: PropTypes.object.isRequired,
+  surveyResponse: PropTypes.func.isRequired,
 };
-// export default Survey;
-export default connect(profileState, { surveyResponse } ) (withRouter(Survey));
+
+export default connect(profileState, { surveyResponse })(withRouter(Survey));
