@@ -7,7 +7,7 @@ export const mockUser = {
   role: params.user.roles.user,
   createdAt: new Date(),
   updatedAt: new Date()
-}
+  }
 
 export const user1 = {
   name: 'Test User1',
@@ -48,11 +48,11 @@ export const mockProduct = {
   image: '/images/stock/belt-female.jpg',
   createdAt: new Date(),
   updatedAt: new Date()
-}
+  }
 
 export const mockCrate = {
   name: 'Clothes for Men',
   description: 'A monthly supply of trendy clothes for men.',
   createdAt: new Date(),
   updatedAt: new Date()
-}
+  }

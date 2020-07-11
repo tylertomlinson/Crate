@@ -10,19 +10,18 @@ import * as mockData from '../../mock/index';
 describe ("user testing", () => {
   const database = database
   let server;
-    beforeAll(() => {
-      server = express();
-      server.use(
-        '/',
-        graphqlHTTP({
-          schema:schema,
-          graphiql:false
-        })
-      );
-
-      models.User.create(mockData.user1);
-      models.User.create(mockData.user2);
-      models.User.create(mockData.user3);
+  beforeAll(() => {
+    server = express();
+    server.use(
+      '/',
+      graphqlHTTP({
+        schema:schema,
+        graphiql:false
+      })
+    );
+    models.User.create(mockData.user1);
+    models.User.create(mockData.user2);
+    models.User.create(mockData.user3);
   })
 
   //Technical Debt: Test database doesn't teardown after testing, so it keeps adding users to the test database
