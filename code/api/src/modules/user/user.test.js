@@ -2,10 +2,10 @@ import request from 'supertest';
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import schema from '../../setup/schema';
-import mocks from '../../mock/index';
 import models from '../../setup/models';
 import params from '../../config/params';
 import database from '../../setup/database'
+import * as mockData from '../../mock/index';
 
 describe ("user testing", () => {
   const database = database
@@ -20,37 +20,9 @@ describe ("user testing", () => {
         })
       );
 
-      const user1 = {
-        name: 'Test User1',
-        email: 'Testemail1@crate.com',
-        password: '123',
-        role: params.user.roles.user,
-        createdAt: new Date(),
-        updatedAt: new Date()
-        }
-      const user2 = {
-        name: 'Test User2',
-        email: 'Testemail2@crate.com',
-        password: '123',
-        gender: 1,
-        role: params.user.roles.user,
-        createdAt: new Date(),
-        updatedAt: new Date()
-        }
-      const user3 = {
-        name: 'Test User3',
-        email: 'Testemail3@test.com',
-        password: '123',
-        role: params.user.roles.user,
-        style: 'casual',
-        gender: 1,
-        createdAt: new Date(),
-        updatedAt: new Date()
-        }
-
-      models.User.create(user1);
-      models.User.create(user2);
-      models.User.create(user3);
+      models.User.create(mockData.user1);
+      models.User.create(mockData.user2);
+      models.User.create(mockData.user3);
   })
 
   //Technical Debt: Test database doesn't teardown after testing, so it keeps adding users to the test database
@@ -84,13 +56,7 @@ describe ("user testing", () => {
 
   it('user style and gender attributes', async () => {
     //Create new user with null style and gender of male
-    const request = models.User.create({
-      name: 'Test User',
-      email: 'Testemail@crate.com',
-      password: '123',
-      gender: 1,
-      role: params.user.roles.user
-    })
+    const request = models.User.create(mockData.mockUser)
 
     // Technical Debt: When testing style after creation, returns whole object. Can't figure out how to return just the style
 
